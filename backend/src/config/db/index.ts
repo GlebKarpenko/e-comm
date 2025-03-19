@@ -1,5 +1,5 @@
 import mysql from 'mysql2/promise';
-import { Logger } from '@app/utils/Logger';
+import { Logger } from '@app/config/Logger';
 
 export const connectDB = async (): Promise<void> => {
     try {
@@ -13,7 +13,7 @@ export const connectDB = async (): Promise<void> => {
         const [rows] = await connection.execute('SELECT DATABASE() AS db_name');
         const dbName = (rows as mysql.RowDataPacket[])[0]?.db_name || 'Unknown';
 
-        Logger.log("Connected to database: ", dbName);
+        Logger.info(`Connected to database: ${dbName}`);
 
         await connection.end();
     } catch (error) {

@@ -4,12 +4,12 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import compression from 'compression';
 import cors from 'cors';
-
 import router from '@app/router';
-import { Logger } from './utils/Logger';
+import config from './config/config';
+import { Logger } from './config/Logger';
 import { connectDB } from './config/db';
 
-Logger.enable();
+Logger.enableDebug();
 
 const app = express();
 
@@ -31,7 +31,7 @@ const port = process.env.PORT;
 const host = process.env.HOST;
 
 server.listen(port, () => {
-    Logger.log(`Server running on ${host}${port}/`);
+    Logger.info(`Server running on http://${config.server.host}:${config.server.port}/`);
 });
 
 app.use('/', router())
