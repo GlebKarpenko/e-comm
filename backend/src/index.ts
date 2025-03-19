@@ -14,7 +14,7 @@ Logger.enableDebug();
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:8081',
+    origin: `http://${config.server.host}:${config.server.port}`,
     credentials: true,
 }));
 
@@ -27,10 +27,7 @@ dotenv.config();
 
 connectDB();
 
-const port = process.env.PORT;
-const host = process.env.HOST;
-
-server.listen(port, () => {
+server.listen(config.server.port, () => {
     Logger.info(`Server running on http://${config.server.host}:${config.server.port}/`);
 });
 
