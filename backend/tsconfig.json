@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "moduleResolution": "nodenext",
+        "baseUrl": "src",
+        "paths": {
+            "@app/*": ["*"]
+        },
+        "outDir": "dist",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+    },
+    "include": ["src/**/*"],
+}
