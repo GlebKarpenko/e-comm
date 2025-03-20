@@ -2,7 +2,7 @@ import mysql from 'mysql2';
 import config from '@app/config/config';
 import { Logger } from '../Logger';
 
-const pool = mysql.createPool(config.mysql).promise();
+export const pool = mysql.createPool(config.mysql).promise();
 
 export const connectDB = async () => {
     try {
@@ -11,5 +11,15 @@ export const connectDB = async () => {
         Logger.info(`Connected to database: ${dbName}`);
     } catch (error) {
         Logger.error(`Could not connect to database.`, 'DATABASE', error);
+    }
+}
+
+export const executeQuery = async <T=any>(query: string, params: any[] = []): Promise<T> => {
+    try {
+        const [result] = await pool.query(query, params);
+        return result as T;
+    } catch (error) {
+        Logger.error(`Could not execute query.`, 'DATABASE', error);
+        throw new Error(`Database operation failed. ${error}`);
     }
 }
