@@ -1,4 +1,5 @@
 import express from 'express';
+import session from 'express-session';
 import https from 'http';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
@@ -8,6 +9,7 @@ import router from '@app/router';
 import config from './config/config';
 import { Logger } from './config/Logger';
 import { connectDB } from './config/db';
+import passport from './config/auth/oauth';
 
 Logger.enableDebug();
 
@@ -21,6 +23,15 @@ app.use(cors({
 app.use(compression());
 app.use(bodyParser.json());
 
+app.use(session({
+    secret: config.appSecret,
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 const server = https.createServer(app);
 
 dotenv.config();
@@ -31,4 +42,4 @@ server.listen(config.server.port, () => {
     Logger.info(`Server running on http://${config.server.host}:${config.server.port}/`);
 });
 
-app.use('/', router())
+app.use('/', router());
