@@ -22,9 +22,21 @@ const MYSQL = {
     password: MYSQL_PASSWORD
 }
 
+const OAUTH20= {
+    clientID: process.env.OAUTH_CLIENT_ID,
+    clientSecret: process.env.OAUTH_CLIENT_SECRET,
+    google: {
+        oauthUrl: process.env.GOOGLE_OAUTH_URL,
+        accessTokenUrl: process.env.GOOGLE_ACCESS_TOKEN_URL,
+        tokenInfoUrl: process.env.GOOGLE_TOKEN_INFO_URL
+    }
+}
+
 const config = {
     mysql: MYSQL,
-    server: SERVER
+    server: SERVER,
+    oauth: OAUTH20,
+    appSecret: process.env.APP_SECRET_KEY
 }
 
 export default config;
