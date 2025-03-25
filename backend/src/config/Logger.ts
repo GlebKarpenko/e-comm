@@ -42,12 +42,14 @@ export class Logger {
     }
 
     static debug(message: string, namespace?: string, object?: any) {
-        const namespaceText = namespace ? `[${namespace}]` : '';
+        if (this.debugMode) {
+            const namespaceText = namespace ? `[${namespace}]` : '';
 
-        if (object) {
-            console.warn(`[${getTimeStamp()}] [DEBUG] ${namespaceText} ${message}`, object);
-        } else {
-            console.warn(`[${getTimeStamp()}] [DEBUG] ${namespaceText} ${message}`);
+            if (object) {
+                console.warn(`[${getTimeStamp()}] [DEBUG] ${namespaceText} ${message}`, object);
+            } else {
+                console.warn(`[${getTimeStamp()}] [DEBUG] ${namespaceText} ${message}`);
+            }
         }
     }
 }
