@@ -6,10 +6,10 @@ import dotenv from 'dotenv';
 import compression from 'compression';
 import cors from 'cors';
 import router from '@app/router';
-import config from './config/config';
-import { Logger } from './config/Logger';
-import { connectDB } from './config/db';
-import passport from './config/auth/oauth';
+import config from '@app/config/config';
+import { Logger } from '@app/utils/Logger';
+import { connectDB } from '@app/config/db';
+import passport from '@app/config/auth/oauth';
 
 Logger.enableDebug();
 

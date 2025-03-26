@@ -1,4 +1,4 @@
-import { Logger } from "@app/config/Logger";
+import { Logger } from "@app/utils/Logger";
 import { Request, Response } from "express";
 
 const NAMESPACE = "AUTH-CONTROLLER";
