@@ -21,19 +21,20 @@ export const executeQuery = async <T=any>(query: string, params: any[] = []): Pr
         return result as T;
     } catch (error) {
         Logger.error(`Could not execute query.`, 'DATABASE', error);
+        Logger.debug(`Failed query:`, "DATABASE", query);
         throw new Error(`Database operation failed. ${error}`);
     }
 }
 
 export const getAll = async <T=any>(table: Tables): Promise<T[]> => {
     return executeQuery<T[]>(
-        `SELECT * FROM ${table}`
+        `SELECT * FROM \`${table}\``
     );
 }
 
 export const getById = async <T=any>(id: number, table: Tables): Promise<T> => {
     const result = await executeQuery<T[]>(
-        `SELECT * FROM ${table} WHERE ${TableIds[table]} = ?`, 
+        `SELECT * FROM \`${table}\` WHERE ${TableIds[table]} = ?`, 
         [id]
     );
 
@@ -48,7 +49,7 @@ export const create = async <T=any>(data: Record<string, any>, table: Tables): P
     const placeholders = fields.map(() => '?').join(", ");
 
     const result = await executeQuery(
-        `INSERT INTO ${table} (${fieldNames}) VALUES (${placeholders})`,
+        `INSERT INTO \`${table}\` (${fieldNames}) VALUES (${placeholders})`,
         values
     );
 
@@ -66,7 +67,7 @@ export const update = async <T=any>(id: number, data: Record<string, any>, table
     const setClause = fields.map(field => `\`${field}\` = ?`).join(", ");
     
     await executeQuery(
-        `UPDATE ${table}
+        `UPDATE \`${table}\`
         SET ${setClause}
         WHERE ${TableIds[table]} = ?`,
         [...values, id]
@@ -83,7 +84,7 @@ export const remove = async <T=any>(id: number, table: Tables): Promise<T> => {
     }
 
     await executeQuery(
-        `DELETE FROM ${table} WHERE ${TableIds[table]} = ?`,
+        `DELETE FROM \`${table}\` WHERE ${TableIds[table]} = ?`,
         [id]
     );
 
