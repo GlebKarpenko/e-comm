@@ -82,3 +82,17 @@ export interface ModifyProductDTO {
     inventory_quantity: number,
     id_discount: number,
 }
+
+export interface ShoppingSession {
+    id_shopping_session: number,
+    user_id: number,
+    total: number,
+    created_at: string,
+    modified_at: string,
+    deleted_at: string,
+}
+
+export interface ShoppingSessionDTO {
+    user_id: number,
+    total: number,
+}
