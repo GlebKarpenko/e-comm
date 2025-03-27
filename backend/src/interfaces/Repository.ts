@@ -152,3 +152,20 @@ export interface ModifyPaymentDTO {
     status: string,
     amount: number,
 }
+
+export interface Order {
+    id_order: number,
+    user_id: number,
+    total: number,
+    quantity: number,
+    payment_id: number,
+    created_at: string,
+    modified_at: string
+}
+
+export interface ModifyOrderDTO {
+    user_id: number,
+    total: number,
+    quantity: number,
+    payment_id: number,
+}

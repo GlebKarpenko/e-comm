@@ -7,6 +7,7 @@ export enum Tables {
     SHIPMENT = 'shipment',
     CART_ITEM = 'cart_item',
     PAYMENT = 'payment',
+    ORDER = 'order',
 }
 
 export const TableIds = {
@@ -18,4 +19,5 @@ export const TableIds = {
     shipment: 'id_user_address',
     cart_item: 'id_cart_item',
     payment: 'id_payment',
+    order: 'id_order',
 }
