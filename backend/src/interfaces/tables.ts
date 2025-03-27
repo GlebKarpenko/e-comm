@@ -5,6 +5,7 @@ export enum Tables {
     DISCOUNT = 'discount',
     SESSION = 'shopping_session',
     SHIPMENT = 'shipment',
+    CART_ITEM = 'cart_item',
 }
 
 export const TableIds = {
@@ -14,4 +15,5 @@ export const TableIds = {
     discount: 'id_discount',
     shopping_session: 'id_shopping_session',
     shipment: 'id_user_address',
+    cart_item: 'id_cart_item',
 }

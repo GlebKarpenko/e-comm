@@ -117,3 +117,18 @@ export interface ModifyShipmentDTO {
     postal_code: string,
     phone: string
 }
+
+export interface CartItem {
+    id_cart_item: number,
+    session_id: number,
+    product_id: number,
+    quantity: number,
+    created_at: string,
+    deleted_at: string
+}
+
+export interface ModifyCartItemDTO {
+    session_id: number,
+    product_id: number,
+    quantity: number,
+}
