@@ -8,6 +8,7 @@ import sessions from './sessions';
 import shipment from './shipment';
 import cartItem from './cartItem';
 import payments from './payments';
+import orders from './orders';
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ export default (): express.Router => {
     shipment(router);
     cartItem(router);
     payments(router);
+    orders(router);
     
     return router;
 }
