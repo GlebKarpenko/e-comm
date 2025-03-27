@@ -124,11 +124,31 @@ export interface CartItem {
     product_id: number,
     quantity: number,
     created_at: string,
-    deleted_at: string
+    modified_at: string
 }
 
 export interface ModifyCartItemDTO {
     session_id: number,
     product_id: number,
     quantity: number,
+}
+
+export interface Payment {
+    id_payment: number,
+    user_id: number,
+    payment_type: string,
+    provider: string,
+    status: string,
+    amount: number,
+    created_at: string,
+    modified_at: string,
+    deleted_at: string,
+}
+
+export interface ModifyPaymentDTO {
+    user_id: number,
+    payment_type: string,
+    provider: string,
+    status: string,
+    amount: number,
 }
