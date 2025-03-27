@@ -92,7 +92,28 @@ export interface ShoppingSession {
     deleted_at: string,
 }
 
-export interface ShoppingSessionDTO {
+export interface ModifySessionDTO {
     user_id: number,
     total: number,
+}
+
+export interface Shipment {
+    id_user_address: number,
+    id_user: number,
+    first_name: string,
+    last_name: string,
+    address_line: string,
+    city: string,
+    postal_code: string,
+    phone: string
+}
+
+export interface ModifyShipmentDTO {
+    id_user: number,
+    first_name: string,
+    last_name: string,
+    address_line: string,
+    city: string,
+    postal_code: string,
+    phone: string
 }

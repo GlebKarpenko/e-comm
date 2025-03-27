@@ -3,7 +3,8 @@ export enum Tables {
     PRODUCT = 'product',
     CATEGORY = 'product_category',
     DISCOUNT = 'discount',
-    SESSION = 'shopping_session'
+    SESSION = 'shopping_session',
+    SHIPMENT = 'shipment',
 }
 
 export const TableIds = {
@@ -11,5 +12,6 @@ export const TableIds = {
     product: 'id_product',
     product_category: 'id_product_category',
     discount: 'id_discount',
-    shopping_session: 'id_shopping_session' 
+    shopping_session: 'id_shopping_session',
+    shipment: 'id_user_address',
 }
