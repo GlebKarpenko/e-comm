@@ -6,6 +6,7 @@ import discounts from './discounts';
 import products from './products';
 import sessions from './sessions';
 import shipment from './shipment';
+import cartItem from './cartItem';
 
 const router = express.Router();
 
@@ -17,6 +18,7 @@ export default (): express.Router => {
     products(router);
     sessions(router);
     shipment(router);
+    cartItem(router);
     
     return router;
 }
