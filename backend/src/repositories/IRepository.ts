@@ -4,4 +4,6 @@ export interface IRepository<T, DTO> {
     create(data: Partial<DTO>): Promise<any>;
     update(id: number, data: Partial<DTO>): Promise<any>;
     delete(id: number): Promise<any>;
+
+    getCategoryItems?(id: number): Promise<T[]>;
 }

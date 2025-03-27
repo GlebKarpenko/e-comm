@@ -21,6 +21,23 @@ export class ProductRepository implements IRepository<Product, ModifyProductDTO>
         return db.executeQuery<Product[]>(query);
     }
 
+    async getCategoryItems(categoryId: number): Promise<Product[]> {
+        const query = `
+            SELECT p.*,
+                c.id_product_category AS "product_category",
+                c.name AS "product_category.name",
+                d.id_discount AS "discount.id_discount",
+                d.percentage AS "discount.percentage"
+            FROM ${Tables.PRODUCT} p
+            JOIN ${Tables.CATEGORY} c ON p.id_category = c.id_product_category
+            LEFT JOIN ${Tables.DISCOUNT} d ON p.id_discount = d.id_discount
+            WHERE c.id_product_category = ?
+        `;
+
+        const result = await db.executeQuery<Product[]>(query, [categoryId]);
+        return result;
+    }
+
     async getById(productId: number): Promise<Product> {
         const query = `
             SELECT p.*,

@@ -3,8 +3,8 @@ import { Logger } from "@app/utils/Logger";
 import { Request, Response } from "express";
 
 export class RepositoryController<T, DTO> {
-    private repository: IRepository<T, DTO>;
-    private namespace: string;
+    protected repository: IRepository<T, DTO>;
+    protected namespace: string;
 
     constructor(repository: IRepository<T, DTO>, namespace: string) {
         this.repository = repository;
