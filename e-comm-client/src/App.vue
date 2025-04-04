@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import NavBar from './components/layouts/NavBar.vue';
+
 </script>
 
 <template>
-  <nav>
-    <router-link to="/">Main</router-link> |
-  </nav>
-  <router-view/>
+  <NavBar />
+  <div class="content-page">
+    <router-view/>
+  </div>
 </template>
 
 <style lang="scss">
@@ -15,18 +17,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
