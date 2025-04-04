@@ -1,0 +1,24 @@
+{
+    "messages": {
+        "welcome": "Welcome"
+    },
+    "navbar": {
+        "catalogue": {
+            "display-text": "Catalogue",
+            "aria-label": "Open catalogue"
+        },
+        "account": {
+            "aria-label": "Profile"
+        },
+        "favorites": {
+            "aria-label": "Favorites"
+        },
+        "cart": {
+            "aria-label": "Shopping cart"
+        },
+        "language-selector": {
+            "aria-label": "Language selector",
+            "label": "Choose language"
+        }
+    }
+}

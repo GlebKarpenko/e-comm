@@ -1,0 +1,24 @@
+{
+    "messages": {
+        "welcome": "Ласкаво просимо"
+    },
+    "navbar": {
+        "catalogue": {
+            "display-text": "Каталог",
+            "aria-label": "Відкрити каталог"
+        },
+        "account": {
+            "aria-label": "Профіль"
+        },
+        "favorites": {
+            "aria-label": "Обране"
+        },
+        "cart": {
+            "aria-label": "Кошик"
+        },
+        "language-selector": {
+            "aria-label": "Селектор мови",
+            "label": "Оберіть мову"
+        }
+    }
+}

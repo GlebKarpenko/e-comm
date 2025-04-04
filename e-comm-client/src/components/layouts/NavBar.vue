@@ -1,5 +1,16 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import i18n from '@/config/i18n';
+import { useI18n } from 'vue-i18n';
+import { Locales } from '@/config/i18n';
 
+const { t } = useI18n({ useScope: 'global' });
+
+const selectedLanguage = ref<Locales>(Locales.UKR);
+
+async function updateLanguage() {
+  i18n.global.locale = selectedLanguage.value;
+}
 </script>
 
 <template>
@@ -9,9 +20,9 @@
         <img src="@/assets/logo_cropped.png" alt="Logo" class="logo-image" />
       </RouterLink>
 
-      <button class="icon-button catalogue-button" aria-label="Open catalogue">
+      <button class="icon-button catalogue-button" :aria-label="t('navbar.catalogue.aria-label')">
         <i class="fas fa-bars" aria-hidden="true"></i>
-        <span class="button-text">Catalogue</span>
+        <span class="button-text">{{ t('navbar.catalogue.display-text') }}</span>
       </button>
 
       <div class="search-bar"></div>
@@ -19,26 +30,32 @@
 
     <ul class="right-content">
       <li>
-        <RouterLink to="/account" class="icon-button" aria-label="Profile">
+        <RouterLink to="/account" class="icon-button" :aria-label="t('navbar.account.aria-label')">
           <i class="fas fa-user" aria-hidden="true"></i>
-          <span class="sr-only">Profile</span>
+          <span class="sr-only">{{ t('navbar.account.aria-label') }}</span>
         </RouterLink>
       </li>
       <li>
-        <RouterLink to="/favorites" class="icon-button" aria-label="Favorites">
+        <RouterLink to="/favorites" class="icon-button" :aria-label="t('navbar.favorites.aria-label')">
           <i class="fas fa-heart" aria-hidden="true"></i>
-          <span class="sr-only">Favorites</span>
+          <span class="sr-only">{{ t('navbar.favorites.aria-label') }}</span>
         </RouterLink>
       </li>
       <li>
-        <RouterLink to="/cart" class="icon-button" aria-label="Cart">
+        <RouterLink to="/cart" class="icon-button" :aria-label="t('navbar.cart.aria-label')">
           <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-          <span class="sr-only">Cart</span>
+          <span class="sr-only">{{ t('navbar.cart.aria-label') }}</span>
         </RouterLink>
       </li>
       <li>
-        <label for="language-selector" class="sr-only">Select Language</label>
-        <select id="language-selector" class="language-selector" aria-label="Language selector">
+        <label for="language-selector" class="sr-only">{{ t('navbar.language-selector.sr-text') }}</label>
+        <select 
+          id="language-selector" 
+          class="language-selector" 
+          aria-label="Language selector"
+          v-model="selectedLanguage"
+          @change="updateLanguage"
+        >
           <option value="en">ENG</option>
           <option value="uk">UKR</option>
         </select>
