@@ -14,7 +14,8 @@ const parseImageSize = (sizeLine: string): { w: number, h: number} => {
     return { w: 0, h: 0};
 }
 
-export const fetchProduct = async (id: number): Promise<ProductCpu | null> => {
+// TODO: implement proper mapping and validation
+export const fetchProduct = async (id: number): Promise<ProductCpu> => {
     try {
         const response = await serverInstance.get<Record<string, any>>(
             `/products/${id}`
@@ -37,11 +38,11 @@ export const fetchProduct = async (id: number): Promise<ProductCpu | null> => {
             sales: {
                 status: cpu['status'],
                 price: Number(cpu['price']) || 0,
-                inventoryQuantity: cpu['inventroy_quantity'],
+                inventoryQuantity: cpu['inventory_quantity'],
                 discountPercentage: Number(cpu['discount.percentage'])
             },
             specs: {
-                socket: cpu['soket'],
+                socket: cpu['socket'],
                 coreCount: cpu['core_count'],
                 threadCount: cpu['thread_count'],
                 baseClock: Number(cpu['base_clock']),
@@ -58,11 +59,54 @@ export const fetchProduct = async (id: number): Promise<ProductCpu | null> => {
                 description: cpu['desc'],
                 imageUrl: cpu['image'],
                 imageMime: cpu['image_mime'],
-                imageSize: parseImageSize('image_size'),
+                imageSize: parseImageSize(cpu['image_size']),
                 createdAt: new Date(cpu['created_at'])
             }
         }
     } catch (error) {
-        return null;
+        console.error(error);
+        return {
+            "identification": {
+              "id": 0,
+              "sku": 0,
+              "slug": ""
+            },
+            "naming": {
+              "name": "",
+              "brand": "",
+              "model": "",
+              "category": ""
+            },
+            "sales": {
+              "status": "",
+              "price": 0,
+              "inventoryQuantity": 0,
+              "discountPercentage": 0
+            },
+            "specs": {
+              "socket": "",
+              "coreCount": 0,
+              "threadCount": 0,
+              "baseClock": 0,
+              "boostClock": 0,
+              "memoryType": "",
+              "pcieSupport": "",
+              "cacheSize": 0,
+              "tdp": 0,
+              "graphicsIntegrated": false,
+              "techProc": 0,
+              "productivityScore": 0
+            },
+            "meta": {
+              "description": "",
+              "imageUrl": "",
+              "imageMime": "",
+              "imageSize": {
+                "w": 0,
+                "h": 0
+              },
+              "createdAt": new Date("2025-04-08T16:52:03.000Z")
+            }
+        }
     }
 }
