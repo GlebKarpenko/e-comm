@@ -22,6 +22,10 @@
         }
     },
     "products-page": {
-        "heading": "Процесори"
+        "heading": "Процесори",
+        "product_card": {
+            "sku": "Код",
+            "availability-label": "Наявність: "
+        }
     }
 }

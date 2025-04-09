@@ -22,6 +22,10 @@
         }
     },
     "products-page": {
-        "heading": "CPUs"
+        "heading": "CPUs",
+        "product_card": {
+            "sku": "SKU",
+            "availability-label": "Available: "
+        }
     }
 }
