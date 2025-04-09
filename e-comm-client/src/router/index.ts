@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import MainLayout from '@/views/main/MainLayout.vue'
+import ProductsView from '@/views/products-page/ProductsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'main',
-    component: MainLayout
+    component: ProductsView
   }
 ]
 

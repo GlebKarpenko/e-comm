@@ -20,5 +20,8 @@
             "aria-label": "Language selector",
             "label": "Choose language"
         }
+    },
+    "products-page": {
+        "heading": "CPUs"
     }
 }
