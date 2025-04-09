@@ -16,7 +16,7 @@ Logger.enableDebug();
 const app = express();
 
 app.use(cors({
-    origin: `http://${config.server.host}:${config.server.port}`,
+    origin: `http://${config.client.host}:${config.client.port}`,
     credentials: true,
 }));
 

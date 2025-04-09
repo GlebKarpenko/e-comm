@@ -4,10 +4,17 @@ dotenv.config();
 
 const SERVER_PORT = process.env.PORT || 8081;
 const SERVER_HOST = process.env.HOST || 'localhost'
+const CLIENT_PORT = process.env.CLIENT_PORT || 8080;
+const CLIENT_HOST = process.env.CLIENT_HOST || 'localhost'
 
 const SERVER = {
     host: SERVER_HOST,
     port: SERVER_PORT
+}
+
+const CLIENT = {
+    host: CLIENT_HOST,
+    port: CLIENT_PORT
 }
 
 const MYSQL_HOST = process.env.MYSQL_HOST || 'localhost';
@@ -35,6 +42,7 @@ const OAUTH20= {
 const config = {
     mysql: MYSQL,
     server: SERVER,
+    client: CLIENT,
     oauth: OAUTH20,
     appSecret: process.env.APP_SECRET_KEY
 }
