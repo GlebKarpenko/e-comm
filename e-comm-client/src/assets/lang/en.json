@@ -26,6 +26,30 @@
         "product_card": {
             "sku": "SKU",
             "availability-label": "Available: "
+        },
+        "filters": {
+            "price": "Price",
+            "brand": "Brand",
+            "socket": "Socket",
+            "pcie_support": "PCIe support",
+            "memory_type": "Memory type",
+            "cores": "Cores",
+            "threads": "Threads",
+            "clock": "Clock rate",
+            "tdp": "TDP",
+            "cache_size": "Chache size",
+            "graphics": "Integrated graphics?",
+            "tech_proc": "techproc",
+            "category": "Usage type",
+            "perfomance": "Productivity score",
+            "values": {
+                "usage": {
+                    "budget": "Budget",
+                    "home-work": "Home/Office",
+                    "gaming": "Gaming",
+                    "workstation": "Workstation"
+                }
+            }
         }
     }
 }

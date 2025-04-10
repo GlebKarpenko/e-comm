@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import RangeFilter from './RangeFilter.vue';
+import { useFilters } from './filterData';
 
-const filters = [
-  { label: 'Socket', options: ['AM4', 's1700', 's1200'] },
-  { label: 'Core Count', options: ['4 cores', '6 cores', '8 cores', '16 cores'] },
-  { label: 'Brand', options: ['Intel', 'AMD'] },
-];
+const filters = useFilters();
 
-const openSections = ref<boolean[]>(filters.map(() => false));
+const openSections = ref<boolean[]>(filters.checkBoxFilters.map(() => false));
 
 function toggle(index: number) {
   openSections.value[index] = !openSections.value[index];
@@ -20,13 +17,14 @@ const priceRange = [5000, 20000];
 <template>
   <div class="filter-panel">
     <RangeFilter 
-      filter-label="Price"
-      :min="0"
-      :max="100000"
-      v-model="priceRange"
+      :filter-label="filters.rangeSelectors.price.label"
+      :min="filters.rangeSelectors.price.min"
+      :max="filters.rangeSelectors.price.max"
+      v-model="filters.rangeSelectors.price.initialRange"
     />
+
     <div
-      v-for="(filter, index) in filters"
+      v-for="(filter, index) in filters.checkBoxFilters"
       :key="index"
       class="filter-section"
     >
@@ -44,6 +42,13 @@ const priceRange = [5000, 20000];
         </div>
       </transition>
     </div>
+
+    <RangeFilter 
+      :filter-label="filters.rangeSelectors.perfomance.label"
+      :min="filters.rangeSelectors.perfomance.min"
+      :max="filters.rangeSelectors.perfomance.max"
+      v-model="filters.rangeSelectors.perfomance.initialRange"
+    />
   </div>
 </template>
 

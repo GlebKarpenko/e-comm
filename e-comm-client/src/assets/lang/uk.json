@@ -26,6 +26,30 @@
         "product_card": {
             "sku": "Код",
             "availability-label": "Наявність: "
+        },
+        "filters": {
+            "price": "Ціна",
+            "brand": "Виробник",
+            "socket": "Тип роз'єму (socket)",
+            "pcie_support": "Підтримка PCIe",
+            "memory_type": "Тип пам'яті",
+            "cores": "Кількість ядер",
+            "threads": "Кількість потоків",
+            "clock": "Тактова частота",
+            "tdp": "Термопакет (TDP)",
+            "cache_size": "Обсяг кешу",
+            "graphics": "Графіка інтегрована?",
+            "tech_proc": "Техпроцес",
+            "category": "Тип використання",
+            "perfomance": "Бал продуктивності",
+            "values": {
+                "usage": {
+                    "budget": "Бюджетні",
+                    "home-work": "Домашні/Робочі",
+                    "gaming": "Ігрові",
+                    "workstation": "Робочі станції (Workstation)"
+                }
+            }
         }
     }
 }
