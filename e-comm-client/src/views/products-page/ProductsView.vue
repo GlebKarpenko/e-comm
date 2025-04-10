@@ -44,7 +44,7 @@ onMounted(async () => {
 <style scoped lang="scss">
 .products-content {
   display: flex;
-  gap: 1.5rem; // add space between filter and grid
+  gap: 0.5rem; // add space between filter and grid
   max-width: 1440px;
   margin: 0 auto;
   padding-left: 1rem;

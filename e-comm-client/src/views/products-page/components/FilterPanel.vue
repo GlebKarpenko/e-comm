@@ -52,7 +52,8 @@ const priceRange = [5000, 20000];
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 0.5rem 0;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .filter-section {

@@ -97,6 +97,7 @@ function emitChange() {
     color: #666;
     font-weight: 500;
     margin-bottom: 0.25rem;
+    margin-right: auto;
   }
 
   .inputs {
