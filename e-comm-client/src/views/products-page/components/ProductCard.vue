@@ -84,7 +84,7 @@ const skuTagText = computed(() => {
 .product-name {
   font-size: 16px;
   font-weight: 600;
-  margin: 0;
+  // margin: 0;
 }
 
 .info-row {
@@ -126,7 +126,7 @@ const skuTagText = computed(() => {
 .cart-button {
   flex: 0 0 auto;
   width: 100%;
-  max-width: 140px;
+  max-width: 120px;
   background-color: #2c3e50;
   color: white;
   border: none;

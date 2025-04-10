@@ -1,17 +1,27 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { ref, onMounted } from 'vue';
-import ProductCard from './components/ProductCard.vue';
 import { ProductCpu } from './types/product.types';
-import { fetchProduct } from './api/products';
+import { fetchAllProducts } from './api/products';
+import ProductsLayout from './components/ProductsLayout.vue';
 
 const { t } = useI18n({ useScope: 'global' });
 const I18Namespace = 'products-page';
 
-const product = ref<ProductCpu>();
+const products = ref<ProductCpu[]>([]);
+const pageSize = 50;
+const pageNumber = ref(1);
+
+async function getProducts() {
+  const allProducts = await fetchAllProducts();
+  const pageStart = (pageNumber.value - 1) * pageSize;
+  const pageEnd = pageStart + pageSize; 
+
+  return allProducts.slice(pageStart, pageEnd);
+}
 
 onMounted(async () => {
-  product.value = await fetchProduct(16);
+  products.value = await getProducts();
 });
 </script>
 
@@ -19,7 +29,7 @@ onMounted(async () => {
  <div class="products-view">
   <h1 class="page-heading">{{ t(`${I18Namespace}.heading`) }} <i class="fas fa-microchip"></i></h1>
   <div class="products-wrapper">
-    <ProductCard v-if="product" :product="product"/>
+    <ProductsLayout :products="products"/>
   </div>
  </div>
 </template>
