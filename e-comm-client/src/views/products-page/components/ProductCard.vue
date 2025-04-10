@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineProps, PropType, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { ProductCpu } from '@/views/types/product.types';
+import { ProductCpu } from '@/views/products-page/types/product.types';
 
 const props = defineProps({
   product: {

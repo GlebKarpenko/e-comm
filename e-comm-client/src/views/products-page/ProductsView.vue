@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import { ref, onMounted } from 'vue';
 import ProductCard from './components/ProductCard.vue';
-import { ProductCpu } from '../types/product.types';
+import { ProductCpu } from './types/product.types';
 import { fetchProduct } from './api/products';
 
 const { t } = useI18n({ useScope: 'global' });
