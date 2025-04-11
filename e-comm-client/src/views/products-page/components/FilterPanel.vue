@@ -1,30 +1,59 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import filterData from './filterData';
 import RangeFilter from './RangeFilter.vue';
-import { useFilters } from './filterData';
 
-const filters = useFilters();
+const { t } = useI18n({ useScope: 'global' });
 
-const openSections = ref<boolean[]>(filters.checkBoxFilters.map(() => false));
+// Update translation keys with localized label values
+const translatedSelectors = computed(() => {
+  return filterData.rangeSelectors.map(selector => {
+    return {
+      ...selector,
+      label: t(selector.label)
+    }
+  });
+});
+
+// Update translation key for labels or options with their translations
+const translatedCheckboxes = computed(() => {
+  return filterData.checkBoxFilters.map(filter => {
+    // Translate both labels and options that need localization
+    if (filter.optionsKeys) {
+      return {
+        label: t(filter.label),
+        options: filter.optionsKeys.map(key => t(key))
+      };
+    }
+
+    // Only translate labels
+    return {
+      label: t(filter.label),
+      options: filter.options
+    }
+  })
+});
+
+const openSections = ref<boolean[]>(translatedCheckboxes.value.map(() => false));
 
 function toggle(index: number) {
   openSections.value[index] = !openSections.value[index];
 }
 
-const priceRange = [5000, 20000];
 </script>
 
 <template>
   <div class="filter-panel">
     <RangeFilter 
-      :filter-label="filters.rangeSelectors.price.label"
-      :min="filters.rangeSelectors.price.min"
-      :max="filters.rangeSelectors.price.max"
-      v-model="filters.rangeSelectors.price.initialRange"
+      :filter-label="translatedSelectors[0].label"
+      :min="translatedSelectors[0].min"
+      :max="translatedSelectors[0].max"
+      v-model="translatedSelectors[0].initialRange"
     />
 
     <div
-      v-for="(filter, index) in filters.checkBoxFilters"
+      v-for="(filter, index) in translatedCheckboxes"
       :key="index"
       class="filter-section"
     >
@@ -44,10 +73,10 @@ const priceRange = [5000, 20000];
     </div>
 
     <RangeFilter 
-      :filter-label="filters.rangeSelectors.perfomance.label"
-      :min="filters.rangeSelectors.perfomance.min"
-      :max="filters.rangeSelectors.perfomance.max"
-      v-model="filters.rangeSelectors.perfomance.initialRange"
+      :filter-label="translatedSelectors[1].label"
+      :min="translatedSelectors[1].min"
+      :max="translatedSelectors[1].max"
+      v-model="translatedSelectors[1].initialRange"
     />
   </div>
 </template>

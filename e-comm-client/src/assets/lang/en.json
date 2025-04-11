@@ -18,7 +18,8 @@
         },
         "language-selector": {
             "aria-label": "Language selector",
-            "label": "Choose language"
+            "label": "Choose language",
+            "sr-text": "Choose language"
         }
     },
     "products-page": {

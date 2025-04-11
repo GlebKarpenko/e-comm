@@ -119,3 +119,10 @@ export interface ProductRequestDTO {
     "discount.id_discount": number;
     "discount.percentage": string;
 }
+
+export interface RangeSelector {
+  label: string,
+  min: number,
+  max: number,
+  initialRange: number[]
+}

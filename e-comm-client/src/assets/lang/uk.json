@@ -18,7 +18,8 @@
         },
         "language-selector": {
             "aria-label": "Селектор мови",
-            "label": "Оберіть мову"
+            "label": "Оберіть мову",
+            "sr-text": "Оберіть мову"
         }
     },
     "products-page": {
