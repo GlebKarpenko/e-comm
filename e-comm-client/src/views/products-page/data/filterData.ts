@@ -26,8 +26,8 @@ const filterData = {
         {
             id: "socket",          
             labelKey: 'products-page.filters.socket',       
-            options: ["Socket 1851", "Socket 1700", "Socket 1200", "Socket 1151-V2", "Socket 1151", "Socket 1155", "Socket AM3+", "Socket AM4", "Socket AM5", "Socket AM4", "Socket TR5"],
-            values: ["Socket 1851", "Socket 1700", "Socket 1200", "Socket 1151-V2", "Socket 1151", "Socket 1155", "Socket AM3+", "Socket AM4", "Socket AM5", "Socket AM4", "Socket TR5"],
+            options: ["Socket 1851", "Socket 1700", "Socket 1200", "Socket 1151-V2", "Socket 1151", "Socket 1155", "Socket AM3+", "Socket AM4", "Socket AM5", "Socket TR5"],
+            values: ["LGA1851", "LGA1700", "LGA1200", "LGA1151-V2", "LGA1151", "LGA1155", "AM3+", "AM4", "AM5", "TR5"],
         },
         { 
             id: "pcie_support",
