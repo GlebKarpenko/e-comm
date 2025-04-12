@@ -1,20 +1,31 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import filterData from './filterData';
+import filterData from '@/views/products-page/data/filterData';
 import RangeFilter from './RangeFilter.vue';
 
 const { t } = useI18n({ useScope: 'global' });
 
+const selectors = ref(filterData.rangeSelectors);
+const selectedPrice = ref<[number, number]>([selectors.value[0].min, selectors.value[0].max]);
+const selectedPerfomance = ref<[number, number]>([selectors.value[1].min, selectors.value[1].max]);
+
+function updatePrice(newPrice: [number, number]) {
+  selectedPrice.value = newPrice;
+}
+
+function updatePerfomance(newPerfomance: [number, number]) {
+  selectedPerfomance.value = newPerfomance;
+}
+
 // Update translation keys with localized label values
-const translatedSelectors = computed(() => {
-  return filterData.rangeSelectors.map(selector => {
-    return {
-      ...selector,
-      label: t(selector.label)
-    }
-  });
+const selectorLabels = computed(() => {
+    return filterData.rangeSelectors.map(selector => {
+      return { label: t(selector.labelKey) };
+    });
 });
+
+const checkboxes = ref(filterData.checkBoxFilters);
 
 // Update translation key for labels or options with their translations
 const translatedCheckboxes = computed(() => {
@@ -22,14 +33,14 @@ const translatedCheckboxes = computed(() => {
     // Translate both labels and options that need localization
     if (filter.optionsKeys) {
       return {
-        label: t(filter.label),
+        label: t(filter.labelKey),
         options: filter.optionsKeys.map(key => t(key))
       };
     }
 
     // Only translate labels
     return {
-      label: t(filter.label),
+      label: t(filter.labelKey),
       options: filter.options
     }
   })
@@ -46,10 +57,11 @@ function toggle(index: number) {
 <template>
   <div class="filter-panel">
     <RangeFilter 
-      :filter-label="translatedSelectors[0].label"
-      :min="translatedSelectors[0].min"
-      :max="translatedSelectors[0].max"
-      v-model="translatedSelectors[0].initialRange"
+      :filter-label="selectorLabels[0].label"
+      :min="selectors[0].min"
+      :max="selectors[0].max"
+      v-model="selectors[0].initialRange"
+      @update:model-value="updatePrice"
     />
 
     <div
@@ -73,10 +85,11 @@ function toggle(index: number) {
     </div>
 
     <RangeFilter 
-      :filter-label="translatedSelectors[1].label"
-      :min="translatedSelectors[1].min"
-      :max="translatedSelectors[1].max"
-      v-model="translatedSelectors[1].initialRange"
+      :filter-label="selectorLabels[1].label"
+      :min="selectors[1].min"
+      :max="selectors[1].max"
+      v-model="selectors[1].initialRange"
+      @update:model-value="updatePerfomance"
     />
   </div>
 </template>
