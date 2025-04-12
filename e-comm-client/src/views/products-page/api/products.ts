@@ -1,5 +1,6 @@
 import serverInstance from "@/config/api/serverInstance"
-import { ProductCpu, ProductRequestDTO } from "@/views/products-page/types/product.types";
+import { ProductCpu } from "@/types/index.types";
+import { ProductRequestDTO } from "@/views/products-page/types/product.types";
 import { EMPTY_CPU_PRODUCT } from "@/views/products-page/types/product.types";
 
 const parseImageSize = (sizeLine: string): { w: number, h: number} => {

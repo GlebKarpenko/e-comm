@@ -36,7 +36,7 @@
             "memory_type": "Memory type",
             "cores": "Cores",
             "threads": "Threads",
-            "clock": "Clock rate",
+            "clock":"Clock rate",
             "tdp": "TDP",
             "cache_size": "Chache size",
             "graphics": "Integrated graphics?",
@@ -52,5 +52,31 @@
                 }
             }
         }
+    },
+    "cpu-page": {
+        "price": "Price",
+        "brand": "Brand",
+        "socket": "Socket",
+        "pcie": "PCIe",
+        "memory": "Memory",
+        "cores": "Cores",
+        "threads": "Threads",
+        "base-clock": "Base clock rate",
+        "boost-clock": "Boost clock rate",
+        "tdp": "TDP",
+        "cache-size": "Chache size",
+        "graphics": "Integrated graphics?",
+        "tech-proc": "techproc",
+        "category": "Usage type",
+        "perfomance": "Productivity score",
+        "usage": {
+            "budget": "Budget",
+            "home-work": "Home/Office",
+            "gaming": "Gaming",
+            "workstation": "Workstation"
+        },
+        "available": "Available",
+        "total": "Total",
+        "add-to-cart": "Add to cart"
     }
 }

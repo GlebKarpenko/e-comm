@@ -1,4 +1,4 @@
-import { ProductCpu } from "../types/product.types";
+import { ProductCpu } from "@/types/index.types";
 import { FilterState } from "../types/filter.types";
 import { Metrics } from "@/utils/parse.enum";
 import { parseRange } from "@/utils/parse";

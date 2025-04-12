@@ -52,5 +52,31 @@
                 }
             }
         }
+    },
+    "cpu-page": {
+        "price": "Ціна",
+        "brand": "Виробник",
+        "socket": "Тип роз'єму (socket)",
+        "pcie": "PCIe",
+        "memory": "Пам'ять",
+        "cores": "Кількість ядер",
+        "threads": "Кількість потоків",
+        "base-clock": "Тактова частота (базова)",
+        "boost-clock": "Тактова частота (boost)",
+        "tdp": "Термопакет (TDP)",
+        "cache-size": "Обсяг кешу",
+        "graphics": "Графіка інтегрована?",
+        "tech-proc": "Техпроцес",
+        "category": "Тип використання",
+        "perfomance": "Бал продуктивності",
+        "usage": {
+            "budget": "Бюджетні",
+            "home-work": "Домашні/Робочі",
+            "gaming": "Ігрові",
+            "workstation": "Робочі станції (Workstation)"
+        },
+        "available": "В наявносі",
+        "total": "Всього",
+        "add-to-cart": "Додати до кошика"
     }
 }

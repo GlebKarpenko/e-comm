@@ -2,6 +2,7 @@
 import { defineProps, PropType } from 'vue';
 import { ProductCpu } from '@/types/index.types';
 import ProductCard from './ProductCard.vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
   products: {
@@ -9,6 +10,12 @@ const props = defineProps({
     required: true
   }
 });
+
+const router = useRouter();
+
+function goToProduct(id: number) {
+  router.push({ name: 'cpu-view', params: { id } });
+}
 </script>
 
 <template>
@@ -18,7 +25,10 @@ const props = defineProps({
     :key="product.identification.id" 
     :value="product"
   >
-    <ProductCard :product="product"/>
+    <ProductCard 
+      :product="product" 
+      @click="goToProduct(product.identification.id)"
+    />
   </div>
  </div>
 </template>
