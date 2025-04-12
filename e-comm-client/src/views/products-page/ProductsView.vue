@@ -5,6 +5,8 @@ import { ProductCpu } from './types/product.types';
 import { fetchAllProducts } from './api/products';
 import ProductsLayout from './components/ProductsLayout.vue';
 import FilterPanel from './components/FilterPanel.vue';
+import { applyFilters } from './services/filtering';
+import { FilterState } from './types/filter.types';
 
 const { t } = useI18n({ useScope: 'global' });
 const I18Namespace = 'products-page';
@@ -21,6 +23,13 @@ async function getProducts() {
   return allProducts.slice(pageStart, pageEnd);
 }
 
+async function filterProducts(filterState: FilterState) {
+  if (filterState) {
+    products.value = await getProducts();
+    products.value = applyFilters(products.value, filterState);
+  }
+}
+
 onMounted(async () => {
   products.value = await getProducts();
 });
@@ -31,11 +40,11 @@ onMounted(async () => {
   <h1 class="page-heading">{{ t(`${I18Namespace}.heading`) }} <i class="fas fa-microchip"></i></h1>
   <main class="products-content">
     <aside class="products-filter">
-      <FilterPanel />
+      <FilterPanel @update:filter-state="filterProducts"/>
     </aside>
 
     <section class="products-grid-wrapper">
-      <ProductsLayout :products="products"/>
+      <ProductsLayout :products="products" />
     </section>
   </main>
  </div>
