@@ -3,21 +3,19 @@ import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import filterData from '@/views/products-page/data/filterData';
 import RangeFilter from './RangeFilter.vue';
-import { FilterState } from '../types/filter.types';
+import { CheckboxFilterKey, FilterState } from '../types/filter.types';
 
 const { t } = useI18n({ useScope: 'global' });
 
 // Range selectors
 const selectors = ref(filterData.rangeSelectors);
-const selectedPrice = ref<[number, number]>([selectors.value[0].min, selectors.value[0].max]);
-const selectedPerfomance = ref<[number, number]>([selectors.value[1].min, selectors.value[1].max]);
 
 function updatePrice(newPrice: [number, number]) {
-  selectedPrice.value = newPrice;
+  filterState.value.price = newPrice;
 }
 
 function updatePerfomance(newPerfomance: [number, number]) {
-  selectedPerfomance.value = newPerfomance;
+  filterState.value.perfomance_range = newPerfomance;
 }
 
 // Update translation keys with localized label values
@@ -25,6 +23,14 @@ const selectorLabels = computed(() => {
     return filterData.rangeSelectors.map(selector => {
       return { label: t(selector.labelKey) };
     });
+});
+
+// Global state to keep track of selected options
+// Range values are selected by default with maximum possible range
+// Other checkbox values are unactive before user interacts with them
+const filterState = ref<FilterState>({
+  price:            [selectors.value[0].min, selectors.value[0].max],
+  perfomance_range: [selectors.value[1].min, selectors.value[1].max]
 });
 
 // Checkbox inputs
@@ -49,19 +55,29 @@ const translatedCheckboxes = computed(() => {
   })
 });
 
-// Global state to keep track of selected options
-// If new value is selected it is added as key-value pair
-// Range values are selected by default, the rest are unactive before user interacts with them
-const filterState = ref<FilterState>({
-  price: selectedPrice.value,
-  perfomance_range: selectedPerfomance.value
-});
-
 function updateFilterState(event: Event) {
   const target = event.target as HTMLInputElement;
+  const key = target.name as CheckboxFilterKey;
   const value = target.value;
 
-  console.log("new selection", value);
+  // If option of new type is selected its name added as key
+  if (!filterState.value[key]) {
+    filterState.value[key] = [value];
+  } else {
+    // Toggle checkbox selection
+    const existing = filterState.value[key];
+    const index = existing.indexOf(value);
+
+    if (index === -1){
+      existing.push(value);
+    } else {
+      existing.splice(index, 1);
+      if (existing.length === 0){
+        // If last option of filter-type is unselected, delete filter-type
+        delete filterState.value[key];
+      }
+    }
+  }
 }
 
 // Keep track of which filtering options are opened
@@ -103,7 +119,7 @@ function toggle(index: number) {
             <input 
               type="checkbox"
               :id="option"
-              :name="checkboxGroup.labelKey"
+              :name="checkboxGroup.id"
               :value="option"
               @change="updateFilterState"
             />

@@ -21,3 +21,5 @@ export interface FilterState {
     techproc?: string[]
     category?: string[]
 }
+
+export type CheckboxFilterKey = Exclude<keyof FilterState, 'price' | 'perfomance_range'>;
