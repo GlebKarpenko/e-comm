@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, defineEmits } from 'vue';
 import { useI18n } from 'vue-i18n';
 import filterData from '@/views/products-page/data/filterData';
 import RangeFilter from './RangeFilter.vue';
 import { CheckboxFilterKey, FilterState } from '../types/filter.types';
+
+const emit = defineEmits(['update:filterState']);
 
 const { t } = useI18n({ useScope: 'global' });
 
@@ -12,10 +14,12 @@ const selectors = ref(filterData.rangeSelectors);
 
 function updatePrice(newPrice: [number, number]) {
   filterState.value.price = newPrice;
+  emit('update:filterState', filterState.value);
 }
 
 function updatePerfomance(newPerfomance: [number, number]) {
   filterState.value.perfomance_range = newPerfomance;
+  emit('update:filterState', filterState.value);
 }
 
 // Update translation keys with localized label values
@@ -78,6 +82,8 @@ function updateFilterState(event: Event) {
       }
     }
   }
+
+  emit('update:filterState', filterState.value);
 }
 
 // Keep track of which filtering options are opened
