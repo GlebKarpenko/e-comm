@@ -77,6 +77,8 @@
         },
         "available": "Available",
         "total": "Total",
-        "add-to-cart": "Add to cart"
+        "add-to-cart": "Add to cart",
+        "no": "No",
+        "yes": "Yes"
     }
 }
