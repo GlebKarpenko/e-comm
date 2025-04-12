@@ -72,7 +72,7 @@ const filterData = {
             values: ["< 8 MB", "8 - 16 MB", "17 - 32 MB", "33 - 64 MB", "65 - 96 MB", "> 96 MB"],
         },
         { 
-            id: "cpugraphics",    
+            id: "graphics",    
             labelKey: 'products-page.filters.graphics',     
             options: ['+', '-'],
             values: ['+', '-'],
