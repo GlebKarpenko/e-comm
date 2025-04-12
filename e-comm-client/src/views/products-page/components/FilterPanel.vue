@@ -3,9 +3,11 @@ import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import filterData from '@/views/products-page/data/filterData';
 import RangeFilter from './RangeFilter.vue';
+import { FilterState } from '../types/filter.types';
 
 const { t } = useI18n({ useScope: 'global' });
 
+// Range selectors
 const selectors = ref(filterData.rangeSelectors);
 const selectedPrice = ref<[number, number]>([selectors.value[0].min, selectors.value[0].max]);
 const selectedPerfomance = ref<[number, number]>([selectors.value[1].min, selectors.value[1].max]);
@@ -25,6 +27,7 @@ const selectorLabels = computed(() => {
     });
 });
 
+// Checkbox inputs
 const checkboxes = ref(filterData.checkBoxFilters);
 
 // Update translation key for labels or options with their translations
@@ -38,7 +41,7 @@ const translatedCheckboxes = computed(() => {
       };
     }
 
-    // Only translate labels
+    // Only translate labels, dont change options
     return {
       label: t(filter.labelKey),
       options: filter.options
@@ -46,6 +49,22 @@ const translatedCheckboxes = computed(() => {
   })
 });
 
+// Global state to keep track of selected options
+// If new value is selected it is added as key-value pair
+// Range values are selected by default, the rest are unactive before user interacts with them
+const filterState = ref<FilterState>({
+  price: selectedPrice.value,
+  perfomance_range: selectedPerfomance.value
+});
+
+function updateFilterState(event: Event) {
+  const target = event.target as HTMLInputElement;
+  const value = target.value;
+
+  console.log("new selection", value);
+}
+
+// Keep track of which filtering options are opened
 const openSections = ref<boolean[]>(translatedCheckboxes.value.map(() => false));
 
 function toggle(index: number) {
@@ -65,20 +84,30 @@ function toggle(index: number) {
     />
 
     <div
-      v-for="(filter, index) in translatedCheckboxes"
-      :key="index"
+      v-for="(checkboxGroup, groupIndex) in checkboxes"
+      :key="groupIndex"
       class="filter-section"
     >
-      <button class="filter-header" @click="toggle(index)">
-        {{ filter.label }}
-        <span class="chevron" :class="{ open: openSections[index] }">⌄</span>
+      <button class="filter-header" @click="toggle(groupIndex)">
+        {{ translatedCheckboxes[groupIndex].label }}
+        <span class="chevron" :class="{ open: openSections[groupIndex] }">⌄</span>
       </button>
 
       <transition name="fold">
-        <div v-show="openSections[index]" class="filter-options">
-          <label v-for="option in filter.options" :key="option" class="option">
-            <input type="checkbox" />
-            {{ option }}
+        <div v-show="openSections[groupIndex]" class="filter-options">
+          <label 
+            v-for="(option, optionIndex) in checkboxGroup.values" 
+            :key="option" 
+            class="option"
+          >
+            <input 
+              type="checkbox"
+              :id="option"
+              :name="checkboxGroup.labelKey"
+              :value="option"
+              @change="updateFilterState"
+            />
+            {{ translatedCheckboxes[groupIndex].options[optionIndex] }}
           </label>
         </div>
       </transition>
