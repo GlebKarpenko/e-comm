@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 import { ref, onMounted } from 'vue';
-import { ProductCpu } from './types/product.types';
+import { ProductCpu } from '@/types/index.types';
 import { fetchAllProducts } from './api/products';
 import ProductsLayout from './components/ProductsLayout.vue';
 import FilterPanel from './components/FilterPanel.vue';

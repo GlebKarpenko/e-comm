@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps, PropType } from 'vue';
-import { ProductCpu } from '../types/product.types';
+import { ProductCpu } from '@/types/index.types';
 import ProductCard from './ProductCard.vue';
 
 const props = defineProps({
