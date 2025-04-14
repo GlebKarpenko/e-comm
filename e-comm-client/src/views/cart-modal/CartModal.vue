@@ -3,6 +3,7 @@ import { ref, onMounted, defineProps, defineEmits, watch } from 'vue';
 import ItemView from './components/ItemView.vue';
 import { fetchCart, addToCart, removeFromCart } from '@/views/cart-modal/api/cart';
 import { SessionCart } from './types/cart.types';
+import { useI18n } from 'vue-i18n';
 
 // Props and emits
 const props = defineProps({
@@ -78,18 +79,8 @@ const removeItem = async (itemId: number) => {
   }
 };
 
-const clearItem = async (itemId: number) => {
-  try {
-    isLoading.value = true;
-    await removeFromCart(itemId);
-    await loadCart();
-  } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Failed to remove item';
-    console.error('Error removing item:', err);
-  } finally {
-    isLoading.value = false;
-  }
-}
+const { t } = useI18n({ useScope: 'global' });
+const I18Namespace = 'cart-modal';
 
 // Load cart data when modal is opened
 watch(() => props.isOpen, (isOpen) => {
@@ -110,19 +101,19 @@ onMounted(() => {
   <div v-if="props.isOpen" class="cart-modal" @click="closeModal">
     <div class="cart-content" @click.stop>
       <div class="cart-header">
-        <h2>Shopping Cart</h2>
+        <h2>{{ t(`${I18Namespace}.shopping-cart`) }}</h2>
         <button class="close-button" @click="closeModal">×</button>
       </div>
      
       <div class="cart-items">
         <div v-if="isLoading" class="loading-state">
-          Loading cart items...
+          {{ t(`${I18Namespace}.loading`) }}
         </div>
         <div v-else-if="error" class="error-state">
           {{ error }}
         </div>
         <div v-else-if="cart.items.length === 0" class="empty-cart">
-          Your cart is empty
+          {{ t(`${I18Namespace}.cart-empty`) }}
         </div>
         <template v-else>
             <ItemView 
@@ -133,7 +124,7 @@ onMounted(() => {
             @remove="removeItem"
           />
           <div class="cart-total">
-            <span>Total:</span>
+            <span>{{ t(`${I18Namespace}.total`) }}:</span>
             <span class="total-price">{{ formatPrice(cart.total) }}</span>
           </div>
         </template>
@@ -144,7 +135,7 @@ onMounted(() => {
           class="checkout-button" 
           :disabled="isLoading || cart.items.length === 0"
         >
-          Checkout
+        {{ t(`${I18Namespace}.checkout`) }}
         </button>
       </div>
     </div>

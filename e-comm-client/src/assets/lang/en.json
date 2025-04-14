@@ -80,5 +80,12 @@
         "add-to-cart": "Add to cart",
         "no": "No",
         "yes": "Yes"
+    },
+    "cart-modal": {
+        "shopping-cart": "Shopping cart",
+        "loading": "Loading cart items...",
+        "cart-empty": "Your cart is empty",
+        "total": "Total",
+        "checkout": "Checkout"   
     }
 }
