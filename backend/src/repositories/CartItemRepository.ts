@@ -14,6 +14,11 @@ export class CartItemRepository implements IRepository<CartItem, ModifyCartItemD
         return db.getById(cartItemId, this.tableName);
     }
 
+    async getBySessionId(sessionId: number): Promise<CartItem[]> {
+        const allItems = await this.getAll();
+        return allItems.filter(item => item.session_id === sessionId);
+    }
+
     async create(cartItemData: ModifyCartItemDTO): Promise<CartItem> {
         return db.create(cartItemData, this.tableName);
     }
