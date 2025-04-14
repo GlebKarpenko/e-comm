@@ -1,4 +1,4 @@
-import { addToCart } from "@app/controllers/cart";
+import { addToCart, removeFromCart } from "@app/controllers/cart";
 import { RepositoryController } from "@app/controllers/RepositoryController";
 import { CartItemRepository } from "@app/repositories/CartItemRepository";
 import { Router } from "express";
@@ -12,5 +12,6 @@ export default (router: Router): void => {
     router.post("/cart-items", cartItemController.create);
     router.put("/cart-items/:id", cartItemController.update);
     router.delete("/cart-items/:id", cartItemController.delete);
-    router.post("/cart-items/add-to-cart", addToCart);
+    router.post("/cart-items/add", addToCart);
+    router.post("/cart-items/remove", removeFromCart);
 }
