@@ -1,4 +1,4 @@
-import * as cartService from "@app/services/SessionService";
+import * as cartService from "@app/services/sessionService";
 import { Logger } from "@app/utils/Logger";
 import { Request, Response } from "express";
 
@@ -48,5 +48,23 @@ export const removeFromCart = async (req: Request, res: Response): Promise<void>
             error
         )
         res.status(500).json({ message: "Error while removing product from cart" });
+    }
+}
+
+export const getCart = async (req: Request, res: Response): Promise<void> => {
+    const { sessionId } = req.params;
+
+    Logger.debug("sessionId", "sessionService", sessionId);
+
+    try {
+        const cart = await cartService.getCartBySessionId(Number(sessionId));
+        res.status(200).json(cart);
+    } catch (error) {
+        Logger.error(
+            `Could not get cart contents for session with id: ${sessionId}`,
+            NAMESPACE,
+            error
+        )
+        res.status(500).json({ message: "Error getting cart contents" });
     }
 }
