@@ -29,7 +29,6 @@ export const fetchCart = async (): Promise<SessionCart | null> => {
             items: response.data.items.map((item: CartItemDTO) => mapCartDTO(item))
         }
     } catch (error) {
-        console.error("Could not fetch cart by session id");
         return null;
     }
 }
@@ -45,8 +44,9 @@ export const addToCart = async (productId: number): Promise<number> => {
         );
 
         return response.data.id_cart_item;
-    } catch (error) {
+    } catch (error: any) {
         console.error(`Could not add item with id: ${productId} to cart`);
+        console.error(error.message);
         return -1;
     }
 }
@@ -62,8 +62,9 @@ export const removeFromCart = async (productId: number): Promise<number> => {
         );
 
         return response.data.id_cart_item;
-    } catch (error) {
+    } catch (error: any) {
         console.error(`Could not remove item with id: ${productId} from cart`);
+        console.error(error.message);
         return -1;
     }
 }
