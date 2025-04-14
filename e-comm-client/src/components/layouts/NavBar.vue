@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { defineEmits, ref} from 'vue';
 import i18n from '@/config/i18n';
 import { useI18n } from 'vue-i18n';
 import { Locales } from '@/config/i18n';
-import CartModal from "@/views/cart-modal/CartModal.vue";
+
+const emit = defineEmits(['modal:open']);
 
 const { t } = useI18n({ useScope: 'global' });
 
@@ -11,16 +12,6 @@ const selectedLanguage = ref<Locales>(Locales.UKR);
 
 async function updateLanguage() {
   i18n.global.locale = selectedLanguage.value;
-}
-
-const isCartModalOpen = ref<boolean>(false);
-
-function openCartModal() {
-  isCartModalOpen.value = true;
-}
-
-function closeCartModal() {
-  isCartModalOpen.value = false;
 }
 </script>
 
@@ -56,7 +47,7 @@ function closeCartModal() {
         <button 
           class="icon-button" 
           :aria-label="t('navbar.cart.aria-label')"
-          @click="openCartModal"
+          @click="emit('modal:open')"
         >
           <i class="fas fa-shopping-cart" aria-hidden="true"></i>
           <span class="sr-only">{{ t('navbar.cart.aria-label') }}</span>
@@ -77,10 +68,6 @@ function closeCartModal() {
       </li>
     </ul>
   </nav>
-  <CartModal
-    :isOpen="isCartModalOpen"
-    @close="closeCartModal"
-  />
 </template>
 
 <style scoped>
