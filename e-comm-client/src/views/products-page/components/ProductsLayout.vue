@@ -27,7 +27,7 @@ function goToProduct(id: number) {
   >
     <ProductCard 
       :product="product" 
-      @click="goToProduct(product.identification.id)"
+      @product-clicked="goToProduct(product.identification.id)"
     />
   </div>
  </div>

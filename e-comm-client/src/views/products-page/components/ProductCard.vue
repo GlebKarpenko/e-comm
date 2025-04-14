@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, PropType, computed } from 'vue';
+import { defineProps, PropType, computed, defineEmits } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { ProductCpu } from '@/types/index.types';
 import { addToCart } from '@/views/cart-modal/api/cart';
@@ -10,6 +10,8 @@ const props = defineProps({
     required: true
   }
 });
+
+const emit = defineEmits(['product-clicked']);
 
 const { t } = useI18n({ useScope: 'global' });
 const I18Namespace = 'products-page.product_card';
@@ -28,13 +30,18 @@ function addProductToCart() {
 
 <template>
   <div class="product-card">
-    <span class="sku-tag">{{ skuTagText }}</span>
-    <img 
-      class="product-image" 
-      :src="props.product.meta.imageUrl" 
-      :alt="props.product.meta.imageMime" 
-    />
-    <h3 class="product-name">{{ props.product.naming.name }}</h3>
+    <div 
+      class="product-display" 
+      @click="emit('product-clicked', props.product.identification.id)"
+    >
+      <span class="sku-tag">{{ skuTagText }}</span>
+      <img 
+        class="product-image" 
+        :src="props.product.meta.imageUrl" 
+        :alt="props.product.meta.imageMime" 
+      />
+      <h3 class="product-name">{{ props.product.naming.name }}</h3>
+    </div>
 
     <div class="info-row">
       <div class="left-column">
