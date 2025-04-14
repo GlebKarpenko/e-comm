@@ -52,7 +52,7 @@ export const removeProductFromCart = async (
     }
 
     if (!quantity || existingItem.quantity <= quantity) {
-        return cartRepository.delete(existingItem.product_id);
+        return cartRepository.delete(existingItem.id_cart_item);
     } else {
         const newQuantity = existingItem.quantity - quantity;
         return cartRepository.update(existingItem.id_cart_item, { quantity: newQuantity });
