@@ -3,6 +3,7 @@ import { defineProps, PropType, computed, defineEmits } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { ProductCpu } from '@/types/index.types';
 import { addToCart } from '@/views/cart-modal/api/cart';
+import { useModalStore } from '@/store/modalStore';
 
 const props = defineProps({
   product: {
@@ -23,8 +24,11 @@ const skuTagText = computed(() => {
   return `${skuLabel} ${skuValue.toString()}`;
 });
 
-function addProductToCart() {
+function handleCartClick() {
   addToCart(props.product.identification.id);
+  
+  const modalStore = useModalStore();
+  modalStore.openCartModal();
 }
 </script>
 
@@ -51,7 +55,7 @@ function addProductToCart() {
         </div>
         <span class="price">{{ props.product.sales.price }}</span>
       </div>
-      <button class="cart-button" @click="addProductToCart">
+      <button class="cart-button" @click="handleCartClick">
         <i class="fa-solid fa-cart-shopping"></i>
       </button>
     </div>
