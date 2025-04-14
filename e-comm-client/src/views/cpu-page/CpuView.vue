@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n';
 import { ProductCpu } from '@/types/index.types'
 import { useRoute } from 'vue-router';
 import { fetchProduct } from '@/views/products-page/api/products';
+import { addToCart } from '../cart-modal/api/cart';
 
 // I18n setup
 const { t } = useI18n();
@@ -35,6 +36,12 @@ const formatPrice = (price: number) => {
     maximumFractionDigits: 0
   }).format(price);
 };
+
+function addProductToCart() {
+  if (cpu.value) {
+    addToCart(cpu.value.identification.id);
+  }
+}
 </script>
 
 <template>
@@ -139,7 +146,11 @@ const formatPrice = (price: number) => {
           </span>
         </div>
       </div>
-      <button class="cart-button" :disabled="cpu.sales.inventoryQuantity <= 0">
+      <button 
+        class="cart-button" 
+        :disabled="cpu.sales.inventoryQuantity <= 0"
+        @click="addProductToCart"
+      >
         <i class="fa-solid fa-cart-shopping"></i>
         {{ t(`${I18Namespace}.add-to-cart`) }}
       </button>

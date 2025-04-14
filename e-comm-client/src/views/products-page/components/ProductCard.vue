@@ -2,6 +2,7 @@
 import { defineProps, PropType, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { ProductCpu } from '@/types/index.types';
+import { addToCart } from '@/views/cart-modal/api/cart';
 
 const props = defineProps({
   product: {
@@ -19,6 +20,10 @@ const skuTagText = computed(() => {
 
   return `${skuLabel} ${skuValue.toString()}`;
 });
+
+function addProductToCart() {
+  addToCart(props.product.identification.id);
+}
 </script>
 
 <template>
@@ -39,7 +44,7 @@ const skuTagText = computed(() => {
         </div>
         <span class="price">{{ props.product.sales.price }}</span>
       </div>
-      <button class="cart-button">
+      <button class="cart-button" @click="addProductToCart">
         <i class="fa-solid fa-cart-shopping"></i>
       </button>
     </div>
