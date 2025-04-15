@@ -90,6 +90,25 @@
     },
     "payment-page": {
         "processing": "Обробка замовлення...",
-        "pay": "Оплатити"
+        "pay": "Оплатити",
+        "billing-information": "Оформлення замовлення",
+        "fname": "Ім'я",
+        "lname": "Прізвище",
+        "email": "Email (example@email.com)",
+        "tel": "Телефон (+380984113762)",
+        "address": "Адреса",
+        "city": "Назва міста",
+        "zip": "ZIP/поштовий код (5 цифр)",
+        "country": "Країна"
+    },
+    "errors": {
+        "required-fname": "Вкажіть ваше ім'я",
+        "required-lname": "Вкажіть ваше прізвище",
+        "required-email": "Вкажіть ваш email",
+        "invalid-email": "Неправильно введений email",
+        "required-address": "Введіть вашу фізичну адресу",
+        "required-city": "Введіть назву вашого міста",
+        "required-zip": "Введіть ZIP (поштовий) код вашої адреси",
+        "required-country": "Оберіть вашу країну"
     }
 }

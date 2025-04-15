@@ -83,14 +83,14 @@ defineExpose({
 
 <template>
   <div class="billing-form">
-    <h2 class="form-title">Billing Information</h2>
+    <h2 class="form-title">{{ t(`${I18Namespace}.billing-information`) }}</h2>
     
     <div class="form-grid">
       <div class="form-field">
         <input 
           type="text" 
           v-model="billing.firstName" 
-          placeholder="First name"
+          :placeholder="t(`${I18Namespace}.fname`)"
           :class="{ error: errors.firstName }"
         />
         <span v-if="errors.firstName" class="error-message">{{ errors.firstName }}</span>
@@ -100,7 +100,7 @@ defineExpose({
         <input 
           type="text" 
           v-model="billing.lastName" 
-          placeholder="Last name"
+          :placeholder="t(`${I18Namespace}.lname`)"
           :class="{ error: errors.lastName }"
         />
         <span v-if="errors.lastName" class="error-message">{{ errors.lastName }}</span>
@@ -110,7 +110,7 @@ defineExpose({
         <input 
           type="email" 
           v-model="billing.email" 
-          placeholder="Email"
+          :placeholder="t(`${I18Namespace}.email`)"
           :class="{ error: errors.email }"
         />
         <span v-if="errors.email" class="error-message">{{ errors.email }}</span>
@@ -120,7 +120,7 @@ defineExpose({
         <input 
           type="tel" 
           v-model="billing.phone" 
-          placeholder="Phone"
+          :placeholder="t(`${I18Namespace}.tel`)"
           :class="{ error: errors.phone }"
         />
         <span v-if="errors.phone" class="error-message">{{ errors.phone }}</span>
@@ -130,7 +130,7 @@ defineExpose({
         <input 
           type="text" 
           v-model="billing.address" 
-          placeholder="Address"
+          :placeholder="t(`${I18Namespace}.address`)"
           :class="{ error: errors.address }"
         />
         <span v-if="errors.address" class="error-message">{{ errors.address }}</span>
@@ -140,7 +140,7 @@ defineExpose({
         <input 
           type="text" 
           v-model="billing.city" 
-          placeholder="City"
+          :placeholder="t(`${I18Namespace}.city`)"
           :class="{ error: errors.city }"
         />
         <span v-if="errors.city" class="error-message">{{ errors.city }}</span>
@@ -150,7 +150,7 @@ defineExpose({
         <input 
           type="text" 
           v-model="billing.zip" 
-          placeholder="Zip"
+          :placeholder="t(`${I18Namespace}.zip`)"
           :class="{ error: errors.zip }"
         />
         <span v-if="errors.zip" class="error-message">{{ errors.zip }}</span>
@@ -160,7 +160,7 @@ defineExpose({
         <select 
           v-model="billing.country"
           :class="{ error: errors.country }"
-          placeholder="Country"
+          :placeholder="t(`${I18Namespace}.country`)"
         >
           <option value="" disabled selected>Country</option>
           <option v-for="country in countries" :key="country.code" :value="country.code">

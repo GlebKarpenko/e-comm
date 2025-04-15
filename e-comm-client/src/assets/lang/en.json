@@ -90,6 +90,25 @@
     },
     "payment-page": {
         "processing": "Processing...",
-        "pay": "Pay now"
+        "pay": "Pay now",
+        "billing-information": "Make your order",
+        "fname": "First name",
+        "lname": "Last name",
+        "email": "Email (example@email.com)",
+        "tel": "Phone (+380984113762)",
+        "address": "Address",
+        "city": "City",
+        "zip": "ZIP/postal code (5 digits)",
+        "country": "Country" 
+    },
+    "errors": {
+        "required-fname": "Enter your first name",
+        "required-lname": "Enter your last name",
+        "required-email": "Enter your email",
+        "invalid-email": "Incorrect email format",
+        "required-address": "Enter your address",
+        "required-city": "Enter your city",
+        "required-zip": "Enter your ZIP (postal) code",
+        "required-country": "Select country"
     }
 }
