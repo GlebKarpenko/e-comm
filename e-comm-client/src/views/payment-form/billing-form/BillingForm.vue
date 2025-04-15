@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, reactive } from 'vue';
-import { BillingInfo, FormErrors, Country } from './billing.types';
+import { defineProps, defineEmits, reactive } from 'vue';
+import { BillingInfo, FormErrors } from './billing.types';
+import { Country, getCodeList } from 'country-list';
 import { useI18n } from 'vue-i18n';
 
 // Props and emits
@@ -32,15 +33,10 @@ const billing = reactive<BillingInfo>({
 
 const errors = reactive<FormErrors>({});
 
-// Sample countries list - replace with your actual data
-const countries = ref<Country[]>([
-  { code: 'US', name: 'United States' },
-  { code: 'CA', name: 'Canada' },
-  { code: 'UK', name: 'United Kingdom' },
-  { code: 'FR', name: 'France' },
-  { code: 'DE', name: 'Germany' },
-  // Add more countries as needed
-]);
+const countryData = getCodeList();
+const countries = Object.entries(countryData).map(([code, name]) => ({
+  code, name
+})) as Country[];
 
 // Validation function
 const validateForm = (): boolean => {
@@ -190,12 +186,6 @@ const handleContinue = () => {
         </select>
         <span v-if="errors.country" class="error-message">{{ errors.country }}</span>
       </div>
-    </div>
-    
-    <div class="form-actions">
-      <button class="continue-button" @click="handleContinue">
-        Continue
-      </button>
     </div>
   </div>
 </template>
