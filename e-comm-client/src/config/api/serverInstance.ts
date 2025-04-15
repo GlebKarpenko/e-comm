@@ -1,7 +1,8 @@
 import axios from "axios";
+import config from "@/config";
 
 const serverInstance = axios.create({
-    baseURL: process.env.MAIN_API_BASE_URL || 'http://localhost:8081/',
+    baseURL: config.mainApi.baseUrl,
     withCredentials: true
 });
 
