@@ -23,7 +23,6 @@ export async function saveBillingInfo(billingInfo: BillingInfo): Promise<{ succe
         // Prepare data for database
         const shipmentRepo = new ShipmentRepository();
         const shipmentData: ModifyShipmentDTO = {
-            id_user: billingInfo.session_id,
             first_name: billingInfo.firstName,
             last_name: billingInfo.lastName,
             email: billingInfo.email,
@@ -33,27 +32,12 @@ export async function saveBillingInfo(billingInfo: BillingInfo): Promise<{ succe
             postal_code: billingInfo.zip,
             country: billingInfo.country
         };
-      
-        // Check if there's an existing record with this session ID
-        const existingShipments = await shipmentRepo.getAll();
-        const existingShipment = existingShipments.find(s => s.id_user === billingInfo.session_id);
-        
-        if (existingShipment) {
-            // Update existing record
-            await shipmentRepo.update(existingShipment.id_user_address, shipmentData);
-            return {
-            success: true,
-            message: 'Billing information updated successfully'
-            };
-        } else {
-            // Create new record
-            await shipmentRepo.create(shipmentData);
-            return {
+        await shipmentRepo.create(shipmentData);
+        return {
             success: true,
             message: 'Billing information saved successfully'
-            };
-        }
-        } catch (error) {
+        };
+    } catch (error) {
         console.error('Error saving billing information:', error);
         return {
             success: false,
@@ -95,9 +79,6 @@ function verifyBillingInfo(billingInfo: BillingInfo): { isValid: boolean; errors
     if (!billingInfo.city?.trim()) errors.push('City is required');
     if (!billingInfo.zip?.trim()) errors.push('ZIP/Postal code is required');
     if (!billingInfo.country?.trim()) errors.push('Country is required');
-    
-    // Validate session ID exists
-    if (!billingInfo.session_id) errors.push('Session ID is required');
     
     return { 
         isValid: errors.length === 0,

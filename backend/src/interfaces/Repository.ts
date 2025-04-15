@@ -99,23 +99,25 @@ export interface ModifySessionDTO {
 
 export interface Shipment {
     id_user_address: number,
-    id_user: number,
     first_name: string,
     last_name: string,
     address_line: string,
     city: string,
     postal_code: string,
-    phone: string
+    phone: string,
+    country: string,
+    email: string
 }
 
 export interface ModifyShipmentDTO {
-    id_user: number,
     first_name: string,
     last_name: string,
     address_line: string,
     city: string,
     postal_code: string,
-    phone: string
+    phone: string,
+    country: string,
+    email: string
 }
 
 export interface CartItem {
