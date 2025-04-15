@@ -12,13 +12,19 @@
     "@stripe/stripe-js": "^7.1.0",
     "axios": "^1.8.4",
     "core-js": "^3.8.3",
+    "country-list": "^2.3.0",
     "vue": "^3.2.13",
+    "vue-country-flag-next": "^2.3.2",
+    "vue-country-select": "^0.2.2",
     "vue-i18n": "11.1.0",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "vue-tel-input": "^9.3.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.4",
+    "@types/country-list": "^2.1.4",
     "@types/jest": "^27.0.1",
+    "@types/vue-tel-input": "^2.1.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",

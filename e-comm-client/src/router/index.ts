@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import ProductsView from '@/views/products-page/ProductsView.vue'
 import CpuView from '@/views/cpu-page/CpuView.vue'
-import PaymentForm from '@/views/payment-form/pay-form/PaymentForm.vue'
-import BillingForm from '@/views/payment-form/billing-form/BillingForm.vue'
+import PaymentView from '@/views/payment-form/PaymentView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,12 +18,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/checkout',
     name: 'checkout',
-    component: PaymentForm
-  },
-  {
-    path: '/checkout/billing',
-    name: 'billing',
-    component: BillingForm
+    component: PaymentView
   }
 ]
 
