@@ -1,34 +1,24 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, reactive } from 'vue';
+import { reactive, defineExpose } from 'vue';
 import { BillingInfo, FormErrors } from './billing.types';
 import { Country, getCodeList } from 'country-list';
 import { useI18n } from 'vue-i18n';
 
-// Props and emits
-const props = defineProps<{
-  initialBilling?: Partial<BillingInfo>;
-  i18nNamespace?: string;
-}>();
-
-const emit = defineEmits<{
-  (e: 'continue', billingInfo: BillingInfo): void;
-  (e: 'validation-error', errors: FormErrors): void;
-}>();
-
 // I18n setup
 const { t } = useI18n();
-const I18Namespace = props.i18nNamespace || 'billing';
+const i18nNamespace = "payment-page";
+const I18Namespace = i18nNamespace;
 
 // Form state
 const billing = reactive<BillingInfo>({
-  firstName: props.initialBilling?.firstName || '',
-  lastName: props.initialBilling?.lastName || '',
-  email: props.initialBilling?.email || '',
-  phone: props.initialBilling?.phone || '',
-  address: props.initialBilling?.address || '',
-  city: props.initialBilling?.city || '',
-  zip: props.initialBilling?.zip || '',
-  country: props.initialBilling?.country || '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  address: '',
+  city: '',
+  zip: '',
+  country: '',
 });
 
 const errors = reactive<FormErrors>({});
@@ -38,64 +28,58 @@ const countries = Object.entries(countryData).map(([code, name]) => ({
   code, name
 })) as Country[];
 
-// Validation function
-const validateForm = (): boolean => {
-  const newErrors: FormErrors = {};
-  
+const validateInput = (): boolean => {
+  console.log("validating");
+
   if (!billing.firstName.trim()) {
-    newErrors.firstName = t(`${I18Namespace}.errors.required-field`);
-  }
-  
-  if (!billing.lastName.trim()) {
-    newErrors.lastName = t(`${I18Namespace}.errors.required-field`);
-  }
-  
-  if (!billing.email.trim()) {
-    newErrors.email = t(`${I18Namespace}.errors.required-field`);
-  } else if (!/^\S+@\S+\.\S+$/.test(billing.email)) {
-    newErrors.email = t(`${I18Namespace}.errors.invalid-email`);
-  }
-  
-  if (!billing.address.trim()) {
-    newErrors.address = t(`${I18Namespace}.errors.required-field`);
-  }
-  
-  if (!billing.city.trim()) {
-    newErrors.city = t(`${I18Namespace}.errors.required-field`);
-  }
-  
-  if (!billing.zip.trim()) {
-    newErrors.zip = t(`${I18Namespace}.errors.required-field`);
-  }
-  
-  if (!billing.country) {
-    newErrors.country = t(`${I18Namespace}.errors.required-field`);
-  }
-  
-  // Update errors object
-  Object.keys(errors).forEach(key => {
-    delete errors[key as keyof FormErrors];
-  });
-  
-  Object.keys(newErrors).forEach(key => {
-    errors[key as keyof FormErrors] = newErrors[key as keyof FormErrors];
-  });
-  
-  // Emit validation errors if any
-  if (Object.keys(newErrors).length > 0) {
-    emit('validation-error', newErrors);
+    errors['firstName'] = t(`${I18Namespace}.errors.required-fname`);
     return false;
   }
   
-  return true;
-};
-
-// Event handlers
-const handleContinue = () => {
-  if (validateForm()) {
-    emit('continue', { ...billing });
+  if (!billing.lastName.trim()) {
+    errors['lastName'] = t(`${I18Namespace}.errors.required-lname`);
+    return false;
   }
-};
+  
+  if (!billing.email.trim()) {
+    errors['email'] = t(`${I18Namespace}.errors.required-email`);
+    return false;
+  } else if (!/^\S+@\S+\.\S+$/.test(billing.email)) {
+    errors['email'] = t(`${I18Namespace}.errors.invalid-email`);
+    return false;
+  }
+  
+  if (!billing.address.trim()) {
+    errors['address'] = t(`${I18Namespace}.errors.required-address`);
+    return false;
+  }
+  
+  if (!billing.city.trim()) {
+    errors['city'] = t(`${I18Namespace}.errors.required-city`);
+    return false;
+  }
+  
+  if (!billing.zip.trim()) {
+    errors['zip'] = t(`${I18Namespace}.errors.required-zip`);
+    return false;
+  }
+  
+  if (!billing.country) {
+    errors['country'] = t(`${I18Namespace}.errors.required-country`);
+    return false;
+  }
+
+  return true;
+}
+
+const getBillingInfo = (): BillingInfo => {
+  return { ...billing };
+}
+
+defineExpose({
+  validateInput,
+  getBillingInfo
+});
 </script>
 
 <template>
