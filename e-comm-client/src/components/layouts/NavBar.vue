@@ -3,6 +3,7 @@ import { defineEmits, ref} from 'vue';
 import i18n from '@/config/i18n';
 import { useI18n } from 'vue-i18n';
 import { Locales } from '@/config/i18n';
+import { useRouter } from 'vue-router';
 
 const emit = defineEmits(['modal:open']);
 
@@ -13,6 +14,12 @@ const selectedLanguage = ref<Locales>(Locales.UKR);
 async function updateLanguage() {
   i18n.global.locale = selectedLanguage.value;
 }
+
+const router = useRouter();
+
+function goToCatalogue() {
+  router.push({ name: 'main' });
+}
 </script>
 
 <template>
@@ -22,7 +29,11 @@ async function updateLanguage() {
         <img src="@/assets/logo_cropped.png" alt="Logo" class="logo-image" />
       </RouterLink>
 
-      <button class="icon-button catalogue-button" :aria-label="t('navbar.catalogue.aria-label')">
+      <button
+        @click="goToCatalogue" 
+        class="icon-button catalogue-button" 
+        :aria-label="t('navbar.catalogue.aria-label')"
+      >
         <i class="fas fa-bars" aria-hidden="true"></i>
         <span class="button-text">{{ t('navbar.catalogue.display-text') }}</span>
       </button>
@@ -35,12 +46,6 @@ async function updateLanguage() {
         <RouterLink to="/account" class="icon-button" :aria-label="t('navbar.account.aria-label')">
           <i class="fas fa-user" aria-hidden="true"></i>
           <span class="sr-only">{{ t('navbar.account.aria-label') }}</span>
-        </RouterLink>
-      </li>
-      <li>
-        <RouterLink to="/favorites" class="icon-button" :aria-label="t('navbar.favorites.aria-label')">
-          <i class="fas fa-heart" aria-hidden="true"></i>
-          <span class="sr-only">{{ t('navbar.favorites.aria-label') }}</span>
         </RouterLink>
       </li>
       <li>
