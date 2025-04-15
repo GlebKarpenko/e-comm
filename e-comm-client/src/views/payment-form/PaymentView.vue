@@ -52,7 +52,7 @@ const I18Namespace = "payment-page";
     @create:message="handleNewMessage"  
     @payment:status="handleNewStatus"
   />
-  <button @click="pay" :disabled="loading">
+  <button @click="pay" :disabled="loading || paymentComplete ">
     {{ loading ? t(`${I18Namespace}.processing`) : t(`${I18Namespace}.pay`) }}
   </button>
   <p v-if="message">{{ message }}</p>
@@ -67,5 +67,13 @@ button {
   color: white;
   cursor: pointer;
   border-radius: 4px;
+  transition: background-color 0.2s ease;
+
+  &:disabled {
+    background-color: #aab3e1;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+    opacity: 0.7;
+  }
 }
 </style>

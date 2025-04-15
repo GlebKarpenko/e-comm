@@ -18,13 +18,13 @@ onMounted(async () => {
 
 const pay = async () => {
   loading.value = true;
+  let status = false;
 
   const cart = await fetchCart();
   if (cart) {
     const result = await createPayment(cart.total, 'uah');
     message.value = result.message;
-
-    if (result.success) emit('payment:status', true);
+    status = result.success
   } else {
     message.value = "Could not fetch cart total amount";
   }
@@ -32,7 +32,7 @@ const pay = async () => {
 
   if (message.value) emit('create:message', message);
 
-  emit('payment:status', false);
+  emit('payment:status', status);
 }
 
 defineExpose({ pay, loading });
