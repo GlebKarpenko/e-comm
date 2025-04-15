@@ -1,34 +1,7 @@
 <script setup lang="ts">
 import { defineProps, defineEmits, ref, reactive } from 'vue';
+import { BillingInfo, FormErrors, Country } from './billing.types';
 import { useI18n } from 'vue-i18n';
-
-// Define types
-interface BillingInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  zip: string;
-  country: string;
-}
-
-interface Country {
-  code: string;
-  name: string;
-}
-
-interface FormErrors {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  phone?: string;
-  address?: string;
-  city?: string;
-  zip?: string;
-  country?: string;
-}
 
 // Props and emits
 const props = defineProps<{
