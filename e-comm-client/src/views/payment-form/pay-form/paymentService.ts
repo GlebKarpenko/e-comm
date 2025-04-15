@@ -1,5 +1,5 @@
 import { loadStripe, Stripe, StripeElements, StripeCardElement } from "@stripe/stripe-js";
-import { fetchStripeSecret } from "./api"
+import { fetchStripeSecret } from "../api"
 import { PaymentResponse, StripePayment } from "./payment.types";
 import config from "@/config";
 

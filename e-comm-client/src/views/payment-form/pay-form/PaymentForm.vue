@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
 import { initializePayment, createPayment } from './paymentService';
-import { fetchCart } from '../cart-modal/api/cart';
+import { fetchCart } from '@/views/cart-modal/api/cart';
 
 const loading = ref(false);
 const message = ref('');
