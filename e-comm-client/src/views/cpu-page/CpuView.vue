@@ -5,6 +5,7 @@ import { ProductCpu } from '@/types/index.types'
 import { useRoute } from 'vue-router';
 import { fetchProduct } from '@/views/products-page/api/products';
 import { addToCart } from '../cart-modal/api/cart';
+import { useModalStore } from '@/store/modalStore';
 
 // I18n setup
 const { t } = useI18n();
@@ -37,9 +38,12 @@ const formatPrice = (price: number) => {
   }).format(price);
 };
 
-function addProductToCart() {
+async function addProductToCart() {
   if (cpu.value) {
-    addToCart(cpu.value.identification.id);
+    await addToCart(cpu.value.identification.id);
+
+    const modalStore = useModalStore();
+    modalStore.openCartModal();
   }
 }
 </script>
