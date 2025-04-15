@@ -2,8 +2,23 @@ import { CartItemRepository } from "@app/repositories/CartItemRepository"
 import { CartItem } from "@app/interfaces/Repository";
 import { SessionRepository } from "@app/repositories/SessionRepository";
 import { ProductRepository } from "@app/repositories/ProductRepository";
-import { SessionCart } from "./sessionService.types";
 import { Logger } from "@app/utils/Logger";
+
+interface SessionItem {
+    id_cart_item: number,
+    product_id: number,
+    session_id: number,
+    quantity: number,
+    productName: string,
+    productImage: string,
+    productPrice: number,
+    itemTotal: number
+}
+
+interface SessionCart {
+    total: number,
+    items?: SessionItem[]
+}
 
 const cartRepository = new CartItemRepository();
 const sessionRepository = new SessionRepository();
