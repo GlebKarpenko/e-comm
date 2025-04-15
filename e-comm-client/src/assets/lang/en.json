@@ -91,7 +91,10 @@
     "payment-page": {
         "processing": "Processing...",
         "pay": "Pay now",
-        "billing-information": "Make your order",
+        "your-order": "Your order",
+        "quantity": "Quantity",
+        "total": "Total:",
+        "billing-information": "Place your order",
         "fname": "First name",
         "lname": "Last name",
         "email": "Email (example@email.com)",

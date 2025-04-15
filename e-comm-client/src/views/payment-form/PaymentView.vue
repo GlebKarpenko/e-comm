@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import BillingForm from './billing-form/BillingForm.vue';
 import PaymentForm from './pay-form/PaymentForm.vue';
+import OrderSummary from './order-summary/OrderSummary.vue';
 
 const billingFormRef = ref();
 const paymentFormRef = ref();
@@ -43,6 +44,7 @@ const I18Namespace = "payment-page";
 
 <template>
  <div class="payment-view">
+  <OrderSummary />
   <BillingForm
     ref="billingFormRef"
     @create:message="handleNewMessage"
@@ -75,5 +77,10 @@ button {
     filter: grayscale(100%);
     opacity: 0.7;
   }
+}
+
+.order-summary {
+  margin-top: 14px;
+  margin-bottom: 14px;
 }
 </style>

@@ -91,6 +91,9 @@
     "payment-page": {
         "processing": "Обробка замовлення...",
         "pay": "Оплатити",
+        "your-order": "Ваше замовлення",
+        "quantity": "Кількість",
+        "total": "Всього:",
         "billing-information": "Оформлення замовлення",
         "fname": "Ім'я",
         "lname": "Прізвище",
