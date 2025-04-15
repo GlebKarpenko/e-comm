@@ -4,6 +4,9 @@ import ItemView from './components/ItemView.vue';
 import { fetchCart, addToCart, removeFromCart } from '@/views/cart-modal/api/cart';
 import { SessionCart } from './types/cart.types';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 // Props and emits
 const props = defineProps({
@@ -79,6 +82,10 @@ const removeItem = async (itemId: number) => {
   }
 };
 
+const goToCheckout = () => {
+  router.push('/checkout');
+}
+
 const { t } = useI18n({ useScope: 'global' });
 const I18Namespace = 'cart-modal';
 
@@ -134,6 +141,7 @@ onMounted(() => {
         <button 
           class="checkout-button" 
           :disabled="isLoading || cart.items.length === 0"
+          @click="goToCheckout"
         >
         {{ t(`${I18Namespace}.checkout`) }}
         </button>
