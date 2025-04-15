@@ -6,8 +6,7 @@ import { useI18n } from 'vue-i18n';
 
 // I18n setup
 const { t } = useI18n();
-const i18nNamespace = "payment-page";
-const I18Namespace = i18nNamespace;
+const I18Namespace = "payment-page";
 
 // Form state
 const billing = reactive<BillingInfo>({

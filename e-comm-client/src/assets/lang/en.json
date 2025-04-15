@@ -87,5 +87,9 @@
         "cart-empty": "Your cart is empty",
         "total": "Total",
         "checkout": "Checkout"   
+    },
+    "payment-page": {
+        "processing": "Processing...",
+        "pay": "Pay now"
     }
 }

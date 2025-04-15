@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import BillingForm from './billing-form/BillingForm.vue';
 import PaymentForm from './pay-form/PaymentForm.vue';
 
@@ -34,6 +35,10 @@ function handleNewMessage(newMessage: string) {
 function handleNewStatus(isComplete: boolean) {
   paymentComplete.value = isComplete;
 }
+
+// I18n setup
+const { t } = useI18n();
+const I18Namespace = "payment-page";
 </script>
 
 <template>
@@ -48,7 +53,7 @@ function handleNewStatus(isComplete: boolean) {
     @payment:status="handleNewStatus"
   />
   <button @click="pay" :disabled="loading">
-    {{ loading ? "Processing..." : "Pay Now" }}
+    {{ loading ? t(`${I18Namespace}.processing`) : t(`${I18Namespace}.pay`) }}
   </button>
   <p v-if="message">{{ message }}</p>
 </div>
