@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { defineEmits, onMounted, ref } from 'vue';
 import { initializePayment, createPayment } from './paymentService';
 import { fetchCart } from '@/views/cart-modal/api/cart';
 
 const loading = ref(false);
 const message = ref('');
+
+const emit = defineEmits(['create:message']);
 
 // Mount the card input on load
 onMounted(async () => {
@@ -26,6 +28,8 @@ const pay = async () => {
     message.value = "Could not fetch cart total amount";
   }
   loading.value = false;
+
+  if (message.value) emit('create:message', message);
 }
 </script>
 
@@ -35,7 +39,6 @@ const pay = async () => {
     <button @click="pay" :disabled="loading">
       {{ loading ? "Processing..." : "Pay Now" }}
     </button>
-    <p v-if="message">{{ message }}</p>
   </div>
 </template>
 
