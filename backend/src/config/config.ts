@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import Stripe from 'stripe';
 
 dotenv.config();
 
@@ -39,12 +40,19 @@ const OAUTH20= {
     }
 }
 
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+
+const stripe = new Stripe(STRIPE_SECRET_KEY, {
+    apiVersion: '2025-03-31.basil'
+});
+
 const config = {
     mysql: MYSQL,
     server: SERVER,
     client: CLIENT,
     oauth: OAUTH20,
-    appSecret: process.env.APP_SECRET_KEY
+    appSecret: process.env.APP_SECRET_KEY,
+    stripe: stripe
 }
 
 export default config;
