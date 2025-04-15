@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import ProductsView from '@/views/products-page/ProductsView.vue'
 import CpuView from '@/views/cpu-page/CpuView.vue'
 import PaymentView from '@/views/payment-form/PaymentView.vue'
+import AccountView from '@/views/account-page/AccountView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/checkout',
     name: 'checkout',
     component: PaymentView
+  },
+  {
+    path: '/account',
+    name: 'account',
+    component: AccountView
   }
 ]
 
