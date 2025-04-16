@@ -63,6 +63,7 @@ export class CategoryRepository implements IRepository<ProductCategory, ModifyCa
 
             if (row.product_id) {
                 categoriesMap[row.category_id].products.push({
+                    id_product: row.product_id,
                     product_name: row.product_name,
                     product_slug: row.product_slug,
                     product_desc: row.product_desc,

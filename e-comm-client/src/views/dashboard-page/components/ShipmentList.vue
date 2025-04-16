@@ -132,10 +132,10 @@ export default defineComponent({
 
 <template>
   <div class="shipment-list">
-    <h2>Shipments</h2>
+    <h2>Замовлення</h2>
     
     <div class="actions">
-      <button class="btn btn-primary" @click="showAddShipmentModal = true">Add New Shipment</button>
+      <button class="btn btn-primary" @click="showAddShipmentModal = true">Додайте нове замовлення</button>
     </div>
     
     <div v-if="loading" class="loading">Loading shipments...</div>
@@ -178,7 +178,7 @@ export default defineComponent({
     <!-- Add/Edit Shipment Modal -->
     <div v-if="showAddShipmentModal || showEditShipmentModal" class="modal-backdrop">
       <div class="modal">
-        <h3>{{ showEditShipmentModal ? 'Edit Shipment' : 'Add New Shipment' }}</h3>
+        <h3>{{ showEditShipmentModal ? 'Edit Shipment' : 'Додати замовлення' }}</h3>
         <form @submit.prevent="submitShipmentForm">
           <div class="form-row">
             <div class="form-group">

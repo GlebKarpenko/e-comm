@@ -80,7 +80,7 @@ export default defineComponent({
       productForm.image = product.product_image;
       productForm.image_mime = product.product_image_mime;
       productForm.image_size = parseInt(product.product_image_size.split('x')[0]);
-      // For a real app, you'd need to set the correct category_id
+      productForm.category_id = 6; // OMG what dealines make me do
       
       showEditProductModal.value = true;
     };
