@@ -42,5 +42,9 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
 }
 
 export const getProfile = (req: Request, res: Response): void => {
-    res.json(req.user);
+    if (req.isAuthenticated()) {
+        res.json({ ok: true });
+    } else {
+        res.status(401).json({ ok: false });
+    }
 }

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { googleAuth, googleAuthCallback } from "@app/middlewares";
+import { googleAuth, googleAuthCallback, isAuthenticated } from "@app/middlewares";
 import { getProfile, logout } from "@app/controllers/auth";
 
 export default (router: Router): void => {
