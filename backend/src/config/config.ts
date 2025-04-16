@@ -35,6 +35,7 @@ const OAUTH20= {
     clientSecret: process.env.OAUTH_CLIENT_SECRET,
     google: {
         oauthUrl: process.env.GOOGLE_OAUTH_URL,
+        callbackUrl: process.env.GOOGLE_CALLBACK_URL,
         accessTokenUrl: process.env.GOOGLE_ACCESS_TOKEN_URL,
         tokenInfoUrl: process.env.GOOGLE_TOKEN_INFO_URL
     }
