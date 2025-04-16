@@ -3,6 +3,7 @@ import ProductsView from '@/views/products-page/ProductsView.vue'
 import CpuView from '@/views/cpu-page/CpuView.vue'
 import PaymentView from '@/views/payment-form/PaymentView.vue'
 import AccountView from '@/views/account-page/AccountView.vue'
+import DashboardView from '@/views/dashboard-page/DashboardView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/account',
     name: 'account',
     component: AccountView
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: DashboardView
   }
 ]
 
