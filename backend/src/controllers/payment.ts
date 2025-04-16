@@ -38,9 +38,9 @@ export const handleBillingInfoSubmission = async (req: Request, res: Response) =
     try {
         const billingInfo: BillingInfo = req.body;
         const result = await saveBillingInfo(billingInfo);
-        
+
         if (result.success) {
-            res.status(200).json(result);
+            res.status(201).json(result);
         } else {
             res.status(400).json(result);
         }
