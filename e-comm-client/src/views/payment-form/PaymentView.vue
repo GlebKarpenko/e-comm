@@ -4,6 +4,8 @@ import { useI18n } from 'vue-i18n';
 import BillingForm from './billing-form/BillingForm.vue';
 import PaymentForm from './pay-form/PaymentForm.vue';
 import OrderSummary from './order-summary/OrderSummary.vue';
+import { submitBillingInfo } from './api';
+import { BillingInfo } from './billing-form/billing.types';
 
 const billingFormRef = ref();
 const paymentFormRef = ref();
@@ -11,7 +13,7 @@ const paymentFormRef = ref();
 const loading = ref(false);
 const message = ref('');
 
-const billingInfo = ref(null);
+const billingInfo = ref<BillingInfo | null>(null);
 const paymentComplete = ref(false);
 
 const pay = async () => {
@@ -25,6 +27,13 @@ const pay = async () => {
   if (paymentFormRef.value) {
     loading.value = true;
     await paymentFormRef.value.pay();
+    if (paymentComplete.value) {
+      if (billingInfo.value !== null) {
+        const billingResponse = await submitBillingInfo(billingInfo.value);
+        message.value = billingResponse;
+      }
+    }
+
     loading.value = paymentFormRef.value.loading;
   }
 }

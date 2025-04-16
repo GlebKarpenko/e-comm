@@ -1,4 +1,5 @@
 import serverInstance from "@/config/api/serverInstance"
+import { BillingInfo } from "../billing-form/billing.types";
 
 interface SecretResponse {
     value: string,
@@ -30,5 +31,23 @@ export const fetchStripeSecret = async (
             error: errorMessage,
             success: false
         };
+    }
+}
+
+export const submitBillingInfo = async (data: BillingInfo): Promise<string> => {
+    try {
+        const response = await serverInstance.post<{ clientSecret: string }>
+        (
+            `shipments/submit`,
+            data
+        );
+
+        if (response.status === 201) {
+            return "Sucessfully saved payment info";
+        }
+        return "Could not save payment info";
+    } catch (err) {
+        console.error(err);
+        return "Could not save payment info";
     }
 }
