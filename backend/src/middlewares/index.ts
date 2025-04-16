@@ -15,14 +15,14 @@ export const googleAuthCallback = async (req: Request, res: Response, next: Next
             if (loginErr) {
                 return next(loginErr);
             }
-            return res.redirect('/');
+            return res.redirect('http://localhost:8080/');
         });
     })(req, res, next);
 }
 
 export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
     if (!req.isAuthenticated()) {
-        return res.redirect('/profile');
+        return res.redirect('http://localhost:8080/login');
     }
     next();
 }
